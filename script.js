@@ -10,10 +10,10 @@ function updateTime() {
 // 节目大纲数据
 const programData = [
     { title: '朗诵', programName: '《XXX》', actors: '阮子轩', time: '17:50 - 18:10', link: './1/青花瓷.mp3' },
-    { title: '歌唱', programName: '《我和我的祖国》', actors: '歌唱者A', time: '18:10 - 18:30', link: './2/' },
+    { title: '歌唱', programName: '《青花瓷》', actors: '邱雨凡', time: '18:10 - 18:30', link: './1/青花瓷.mp3' },
     { title: '小品', programName: '《校园霸凌》', actors: '聂子杰', time: '18:30 - 18:50', link: './3/' },
-    { title: '舞蹈', programName: '《青春舞曲》', actors: '舞蹈团体D', time: '18:50 - 19:10', link: './4/' },
-    { title: '诗朗诵', programName: '《新年寄语》', actors: '朗读者E', time: '19:10 - 19:30', link: './5/' },
+    { title: '舞蹈', programName: '《青春舞曲》', actors: 'XXX', time: '18:50 - 19:10', link: './4/' },
+    { title: '诗朗诵', programName: '《ABC》', actors: 'XXX', time: '19:10 - 19:30', link: './5/' },
     { title: '结束语', programName: '主持人总结', actors: '主持人', time: '19:30 - 19:40', link: './6/' }
 ];
 
