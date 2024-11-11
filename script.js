@@ -27,7 +27,7 @@ type();
 const programData = [
     { title: '朗诵', programName: '《秋日》', actors: '阮子轩', time: '17:50 - 18:10', link: './1/青花瓷.mp3' },
     { title: '歌曲', programName: '《青花瓷》', actors: '邱雨凡', time: '18:10 - 18:30', link: './1/青花瓷.mp3' },
-    { title: '小品', programName: '《校园霸凌》', actors: '聂子杰、石诚之、梅媛媛、赵雨星、邱雨凡...', time: '18:30 - 18:50', link: './3/' },
+    { title: '小品', programName: '《校园霸凌》', actors: '聂子杰、石诚之、梅媛媛、赵雨星、邱雨凡...', time: '18:30 - 18:50', link: './pages/xybl/index.html' },
     { title: '歌曲', programName: '《XXX》', actors: '陈潇', time: '18:50 - 19:10', link: './4/' },
     { title: '诗朗诵', programName: '《XXX》', actors: 'XXX', time: '19:10 - 19:30', link: './5/' },
     { title: 'XX', programName: '《XXX》', actors: 'XXX', time: 'HH:MM - HH:MM', link: './6/' },
