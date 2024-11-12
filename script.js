@@ -27,8 +27,9 @@ type();
 const programData = [
     { title: '朗诵', programName: '《校园趣事》', actors: '阮子轩', time: '17:50 - 18:10', link: './pages/xybl/index.html' },
     { title: '歌曲', programName: '《青花瓷》', actors: '邱雨凡', time: '18:10 - 18:30', link: './pages/video/index.html#videoid=abc' },
-    { title: '小品', programName: '校园霸凌主题《打劫》', actors: '聂子杰、石诚之、梅媛媛、赵雨星、邱雨凡...', time: '18:30 - 18:50', link: './pages/xybl/《打劫》小品剧本.html' },
+    { title: '小品', programName: '校园霸凌主题《打劫》', actors: '聂子杰、石诚之、梅媛媛、赵雨星、邱雨凡...', time: '18:30 - 18:50', link: './pages/xybl/index.html' },
     { title: '歌曲', programName: '《XXX》', actors: '陈潇', time: '18:50 - 19:10', link: './4/' },
+    { title: '小品', programName: '《XXX》', actors: '...', time: '19:10 - 19:30', link: './5/' },
     { title: '歌曲', programName: '《XXX》', actors: '阮思雨', time: '19:10 - 19:30', link: './5/' },
     { title: '唱跳rap', programName: '《只因你太美》', actors: '阮家伟', time: 'HH:MM - HH:MM', link: './6/' },
     { title: '结束语', programName: '主持人总结', actors: '主持人', time: '19:60 - 19:40', link: './7/' }
