@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>视频</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../node_modules/mui-player/dist/mui-player.min.css">
+    <script type="text/javascript" src="../../node_modules/mui-player/dist/mui-player.min.js"></script>
+</head>
+
+<body style="margin: 0; padding: 0;">
+    <div id="mui-player" style="width: 100%;"></div>
+
+    <script type="text/javascript">
+        // import '/node_modules/mui-player/dist/mui-player.min.css'
+        // import MuiPlayer from '/node_modules/mui-player/dist/mui-player.min.js'
+        
+        var mplayer = new MuiPlayer({
+            container: '#mui-player',
+            titale: 'test',
+            src: 'https://upos-sz-estghw.bilivideo.com/upgcxcode/28/15/26140741528/26140741528-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1731395691&gen=playurlv2&os=upos&oi=0&trid=faaa7c14dc7c4114afc0eca51cb72bd8h&mid=3493270195800183&platform=html5&og=08&upsig=dd4f9fd7185c45b83433fe9ee83110fd&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&f=h_0_0&bw=19612&logo=80000000',
+            initFullFixed: true,
+        });
+    </script>
+</body>
+
+</html>
