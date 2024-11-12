@@ -17,10 +17,13 @@
         var videoId = searchParams.get('videoid');
         console.log(videoId);
 
+        const testUrl = 'https://upos-sz-estghw.bilivideo.com/upgcxcode/28/15/26140741528/26140741528-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1731395691&gen=playurlv2&os=upos&oi=0&trid=faaa7c14dc7c4114afc0eca51cb72bd8h&mid=3493270195800183&platform=html5&og=08&upsig=dd4f9fd7185c45b83433fe9ee83110fd&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&f=h_0_0&bw=19612&logo=80000000';
+        const testVideoId = '“时光流转，愿你与珍爱之人，能够再次重逢。”(720P).mp4';
+
         var mplayer = new MuiPlayer({
             container: '#mui-player',
             titale: 'test',
-            src: 'https://upos-sz-estghw.bilivideo.com/upgcxcode/28/15/26140741528/26140741528-1-16.mp4?e=ig8euxZM2rNcNbRVhwdVhwdlhWdVhwdVhoNvNC8BqJIzNbfq9rVEuxTEnE8L5F6VnEsSTx0vkX8fqJeYTj_lta53NCM=&uipk=5&nbs=1&deadline=1731395691&gen=playurlv2&os=upos&oi=0&trid=faaa7c14dc7c4114afc0eca51cb72bd8h&mid=3493270195800183&platform=html5&og=08&upsig=dd4f9fd7185c45b83433fe9ee83110fd&uparams=e,uipk,nbs,deadline,gen,os,oi,trid,mid,platform,og&bvc=vod&nettype=0&f=h_0_0&bw=19612&logo=80000000',
+            src: './' + testVideoId,
             initFullFixed: true,
         });
     </script>
