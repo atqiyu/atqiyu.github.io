@@ -26,7 +26,7 @@ type();
 // 节目大纲数据
 const programData = [
     { title: '朗诵', programName: '《校园趣事》', actors: '阮子轩', time: '17:50 - 18:10', link: './pages/xybl/index.html' },
-    { title: '歌曲', programName: '《青花瓷》', actors: '邱雨凡', time: '18:10 - 18:30', link: './pages/video/index.html' },
+    { title: '歌曲', programName: '《青花瓷》', actors: '邱雨凡', time: '18:10 - 18:30', link: './pages/video/index.html#videoid=abc' },
     { title: '小品', programName: '校园霸凌主题《打劫》', actors: '聂子杰、石诚之、梅媛媛、赵雨星、邱雨凡...', time: '18:30 - 18:50', link: './pages/xybl/《打劫》小品剧本.html' },
     { title: '歌曲', programName: '《XXX》', actors: '陈潇', time: '18:50 - 19:10', link: './4/' },
     { title: '歌曲', programName: '《XXX》', actors: '阮思雨', time: '19:10 - 19:30', link: './5/' },
@@ -75,25 +75,6 @@ function renderPrograms() {
 
 // 初始化渲染节目
 renderPrograms();
-
-// // 添加节目的功能
-// document.getElementById('add-button').addEventListener('click', () => {
-//     const title = prompt("请输入节目名称:");
-//     const program = prompt("请输入节目内容:");
-//     const actors = prompt("请输入演员:");
-//     const time = prompt("请输入时间:");
-//     const purl = prompt("请输入链接:");
-
-//     if (title && program && actors && time && purl) {
-//         // 添加新节目到数据数组
-//         programData.push({ title, program, actors, time, purl });
-
-//         // 重新渲染节目
-//         renderPrograms();
-//     } else {
-//         alert("请确保所有信息都已填写!");
-//     }
-// });
 
 setInterval(updateTime, 1000); // 每秒更新一次时间
 updateTime(); // 页面加载时也要初始化一次时间

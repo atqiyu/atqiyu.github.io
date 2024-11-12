@@ -5,17 +5,18 @@
     <title>视频</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../../node_modules/mui-player/dist/mui-player.min.css">
-    <script type="text/javascript" src="../../node_modules/mui-player/dist/mui-player.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/mui-player/dist/mui-player.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/mui-player/dist/mui-player.min.js"></script>
 </head>
 
 <body style="margin: 0; padding: 0;">
     <div id="mui-player" style="width: 100%;"></div>
 
     <script type="text/javascript">
-        // import '/node_modules/mui-player/dist/mui-player.min.css'
-        // import MuiPlayer from '/node_modules/mui-player/dist/mui-player.min.js'
-        
+        var searchParams = new URLSearchParams(window.location.hash.substring(1));
+        var videoId = searchParams.get('videoid');
+        console.log(videoId);
+
         var mplayer = new MuiPlayer({
             container: '#mui-player',
             titale: 'test',

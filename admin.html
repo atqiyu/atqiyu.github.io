@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>后台</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+
+        .navbar {
+            display: flex;
+            background-color: #444;
+            padding: 10px;
+        }
+
+        .navbar a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        .container {
+            padding: 20px;
+        }
+
+        .card {
+            background-color: white;
+            margin: 10px 0;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #2fb445;
+            text-decoration: none;
+        }
+
+        ul#ful_1 {
+            font-size: 18pt;
+        }
+        ul#ful_2 {
+            font-size: 16pt;
+        }
+        ul#ful_3 {
+            font-size: 14pt;
+        }
+        li {
+            margin: 4px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>网页后台管理系统(静态)</h1>
+    </div>
+
+    <div class="navbar">
+        <a href="./index.html">回到晚会主页</a>
+        <a href="#">内容管理</a>
+        <a href="#">设置</a>
+    </div>
+
+    <div class="container">
+
+        <div class="card">
+            <h2>GitHub仓库</h2>
+            <ul>
+                <li>GitHub Pages 仓库地址：<a href="https://github.com/atqiyu/atqiyu.github.io/">https://github.com/atqiyu/atqiyu.github.io/</a></li>
+                <br />
+                <li>ADMIN: @atqiyu</li>
+                <br />
+                <li>GitHub Pages Server 状态：<font color="green">已开启</font></li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>WEB FILES: </h2>
+            <ul id="ful_1">
+                <li><a href="./README.md">./README.md</a></li>
+                <li><a href="./index.html">./index.html</a></li>
+                <li><a href="./style.css">./style.css</a></li>
+                <li><a href="./script.js">./script.js</a></li>
+                <li><a href="./admin.html">./admin.html</a></li>
+                <li><a href="./node_modules/">./node_moudles/</a></li>
+                <li><a href="./pages/">/pages/</a>
+                    <ul id="ful_2">
+                        <li><a href="./pages/index.html">./index.html</a></li>
+                        <li><a href="./pages/video/">./video/</a>
+                            <ul id="ful_3">
+                                <li><a href="./pages/video/index.html">./index.html</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="./pages/xybl/">./xybl/</a>
+                            <ul id="ful_3">
+                                <li><a href="./pages/xybl/index.html">./index.html</a></li>
+                                <li><a href="./pages/xybl/《打劫》小品剧本.html">./《打劫》小品剧本.html</a></li>
+                                <li><a href="./pages/xybl/《打劫》小品剧本.pdf">./《打劫》小品剧本.pdf</a></li>
+                                <li><a href="./pages/xybl/《打劫》小品剧本.docx">./《打劫》小品剧本.docx</a></li>
+                                <li><a href="./pages/xybl/sourcedoc/">./sourcedoc/</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+
+</html>
