@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面重定向中...</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .redirect-info {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #ffeb3b;
+        }
+        
+        .redirect-url {
+            font-weight: bold;
+            color: #a3d9ff;
+            word-break: break-all;
+            margin: 10px 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background: #45a049;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+        }
+        
+        .btn:active {
+            transform: translateY(1px);
+        }
+        
+        .manual-redirect {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>页面重定向</h1>
+        <p>您将在 <span id="countdown" class="countdown">3</span> 秒后自动跳转到新页面</p>
+        
+        <div class="redirect-info">
+            <p>您正在被重定向到:</p>
+            <div class="redirect-url" id="redirectUrl">http://117.72.172.106:52013/</div>
+        </div>
+        
+        <p>如果您的浏览器没有自动跳转，请点击下面的按钮</p>
+        
+        <div class="manual-redirect">
+            <button id="redirectBtn" class="btn">立即跳转</button>
+        </div>
+        
+        <div class="footer">
+            <p>本页面使用纯前端技术实现重定向，无需后端支持</p>
+        </div>
+    </div>
+
+    <script>
+        // 配置重定向参数
+        const redirectConfig = {
+            // 目标URL - 请修改为您需要重定向的地址
+            targetUrl: "http://117.72.172.106:52013/",
+            // 重定向延迟时间（秒）
+            delay: 3
+        };
+        
+        // 获取DOM元素
+        const countdownElement = document.getElementById('countdown');
+        const redirectUrlElement = document.getElementById('redirectUrl');
+        const redirectBtn = document.getElementById('redirectBtn');
+        
+        // 显示目标URL
+        redirectUrlElement.textContent = redirectConfig.targetUrl;
+        
+        // 倒计时功能
+        let countdown = redirectConfig.delay;
+        countdownElement.textContent = countdown;
+        
+        const countdownInterval = setInterval(() => {
+            countdown--;
+            countdownElement.textContent = countdown;
+            
+            if (countdown <= 0) {
+                clearInterval(countdownInterval);
+                performRedirect();
+            }
+        }, 900);
+        
+        // 执行重定向
+        function performRedirect() {
+            window.location.href = redirectConfig.targetUrl;
+        }
+        
+        // 手动重定向按钮
+        redirectBtn.addEventListener('click', performRedirect);
+        
+        // 使用meta标签作为备用重定向方案
+        document.write(`<meta http-equiv="refresh" content="${redirectConfig.delay};url=${redirectConfig.targetUrl}">`);
+    </script>
+</body>
+</html>
