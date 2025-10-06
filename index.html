@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>页面重定向中...</title>
+    <title>智能重定向系统</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +13,7 @@
         }
         
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
             color: white;
             min-height: 100vh;
             display: flex;
@@ -22,41 +22,160 @@
             align-items: center;
             text-align: center;
             padding: 20px;
+            overflow: hidden;
         }
         
         .container {
-            max-width: 600px;
+            max-width: 800px;
+            width: 95%;
+            max-height: 90vh;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            margin-bottom: 15px;
+            flex-shrink: 0;
         }
         
         h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        p {
-            font-size: 1.2rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+        .subtitle {
+            font-size: 1rem;
+            opacity: 0.9;
         }
         
-        .redirect-info {
+        .status-container {
             background: rgba(255, 255, 255, 0.15);
-            border-radius: 12px;
+            border-radius: 15px;
             padding: 20px;
-            margin: 25px 0;
+            margin: 15px 0;
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-title {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        
+        .status-icon {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+        
+        .progress-bar {
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin: 15px 0;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        
+        .progress {
+            height: 100%;
+            background: #4CAF50;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+        
+        .address-list {
+            text-align: left;
+            margin: 10px 0;
+            flex: 1;
+            overflow-y: auto;
+        }
+        
+        .address-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 12px;
+            margin: 8px 0;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .address-item.checked {
+            background: rgba(76, 175, 80, 0.3);
+        }
+        
+        .address-item.failed {
+            background: rgba(244, 67, 54, 0.3);
+        }
+        
+        .address-item.checking {
+            background: rgba(255, 193, 7, 0.3);
+        }
+        
+        .status-indicator {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .status-pending {
+            background: #ffc107;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .status-success {
+            background: #4CAF50;
+        }
+        
+        .status-failed {
+            background: #f44336;
+        }
+        
+        .address-url {
+            flex-grow: 1;
+            word-break: break-all;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .address-name {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+        
+        .success-message {
+            background: rgba(76, 175, 80, 0.3);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 15px 0;
+            animation: fadeIn 0.5s ease;
+            flex-shrink: 0;
         }
         
         .countdown {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            margin: 15px 0;
+            margin: 10px 0;
             color: #ffeb3b;
         }
         
@@ -65,109 +184,335 @@
             color: #a3d9ff;
             word-break: break-all;
             margin: 10px 0;
+            font-size: 1rem;
+        }
+        
+        .manual-redirect {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            flex-shrink: 0;
+        }
+        
+        .manual-title {
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+        
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
         }
         
         .btn {
             display: inline-block;
             background: #4CAF50;
             color: white;
-            padding: 14px 30px;
+            padding: 10px 18px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 20px;
+            font-size: 0.9rem;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             border: none;
             cursor: pointer;
+            flex: 1;
+            min-width: 120px;
+            max-width: 160px;
         }
         
         .btn:hover {
             background: #45a049;
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
         }
         
-        .btn:active {
-            transform: translateY(1px);
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #4CAF50;
         }
         
-        .manual-redirect {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        .btn-secondary:hover {
+            background: rgba(76, 175, 80, 0.2);
         }
         
-        .footer {
-            margin-top: 40px;
-            font-size: 0.9rem;
-            opacity: 0.8;
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* 自定义滚动条 */
+        .address-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        
+        .address-list::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+        }
+        
+        .address-list::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 3px;
+        }
+        
+        .address-list::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .address-item {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .status-indicator {
+                margin-bottom: 8px;
+            }
+            
+            .btn {
+                min-width: 100px;
+                padding: 8px 15px;
+                font-size: 0.85rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>页面重定向</h1>
-        <p>您将在 <span id="countdown" class="countdown">3</span> 秒后自动跳转到新页面</p>
-        
-        <div class="redirect-info">
-            <p>您正在被重定向到:</p>
-            <div class="redirect-url" id="redirectUrl">http://117.72.172.106:52013/</div>
+        <div class="header">
+            <h1>智能重定向系统</h1>
+            <p class="subtitle">正在检测多个备用地址的可用性...</p>
         </div>
         
-        <p>如果您的浏览器没有自动跳转，请点击下面的按钮</p>
+        <div class="status-container">
+            <div class="status-title">
+                <span class="status-icon">🔍</span>
+                <span>地址可用性检测</span>
+            </div>
+            
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+            
+            <div class="address-list" id="addressList">
+                <!-- 地址列表将由JavaScript动态生成 -->
+            </div>
+            
+            <div id="successMessage" class="success-message" style="display: none;">
+                <p>✅ 成功找到可用地址！正在准备重定向...</p>
+                <p class="redirect-url" id="selectedUrl"></p>
+                <p>将在 <span id="countdown" class="countdown">3</span> 秒后自动跳转</p>
+            </div>
+        </div>
         
         <div class="manual-redirect">
-            <button id="redirectBtn" class="btn">立即跳转</button>
+            <p class="manual-title">或者，您可以手动选择一个地址：</p>
+            <div class="button-container" id="manualButtons">
+                <!-- 手动选择按钮将由JavaScript动态生成 -->
+            </div>
         </div>
         
-        <div class="footer">
-            <p>本页面使用纯前端技术实现重定向，无需后端支持</p>
-        </div>
     </div>
 
     <script>
         // 配置重定向参数
         const redirectConfig = {
-            // 目标URL - 请修改为您需要重定向的地址
-            targetUrl: "http://117.72.172.106:52013/",
+            // 目标URL列表 - 按优先级排序
+            targetUrls: [
+                { name: "成都200Mbps", url: "http://47.108.210.135:52013/" },
+                { name: "宁波300Mbps", url: "http://menb.xiaohang.top:52013/" },
+                { name: "北京4Mbps", url: "http://49.232.187.30:52013" },
+                { name: "北京3Mbps", url: "http://117.72.172.106:52013" },
+            ],
+            // 每个地址检测超时时间（毫秒）
+            checkTimeout: 3000,
             // 重定向延迟时间（秒）
-            delay: 3
+            redirectDelay: 3
         };
         
         // 获取DOM元素
+        const addressListElement = document.getElementById('addressList');
+        const successMessageElement = document.getElementById('successMessage');
+        const selectedUrlElement = document.getElementById('selectedUrl');
         const countdownElement = document.getElementById('countdown');
-        const redirectUrlElement = document.getElementById('redirectUrl');
-        const redirectBtn = document.getElementById('redirectBtn');
+        const manualButtonsElement = document.getElementById('manualButtons');
+        const progressBarElement = document.getElementById('progressBar');
         
-        // 显示目标URL
-        redirectUrlElement.textContent = redirectConfig.targetUrl;
-        
-        // 倒计时功能
-        let countdown = redirectConfig.delay;
-        countdownElement.textContent = countdown;
-        
-        const countdownInterval = setInterval(() => {
-            countdown--;
-            countdownElement.textContent = countdown;
-            
-            if (countdown <= 0) {
-                clearInterval(countdownInterval);
-                performRedirect();
-            }
-        }, 900);
-        
-        // 执行重定向
-        function performRedirect() {
-            window.location.href = redirectConfig.targetUrl;
+        // 初始化地址列表显示
+        function initializeAddressList() {
+            addressListElement.innerHTML = '';
+            redirectConfig.targetUrls.forEach((target, index) => {
+                const addressItem = document.createElement('div');
+                addressItem.className = 'address-item';
+                addressItem.id = `address-${index}`;
+                
+                addressItem.innerHTML = `
+                    <div class="status-indicator status-pending"></div>
+                    <div class="address-url">
+                        <div class="address-name">${target.name}</div>
+                        <div>${target.url}</div>
+                    </div>
+                `;
+                
+                addressListElement.appendChild(addressItem);
+            });
         }
         
-        // 手动重定向按钮
-        redirectBtn.addEventListener('click', performRedirect);
+        // 初始化手动选择按钮
+        function initializeManualButtons() {
+            manualButtonsElement.innerHTML = '';
+            redirectConfig.targetUrls.forEach((target, index) => {
+                const button = document.createElement('button');
+                button.className = 'btn btn-secondary';
+                button.textContent = target.name;
+                button.onclick = () => manuallyRedirectTo(target.url, target.name);
+                manualButtonsElement.appendChild(button);
+            });
+        }
         
-        // 使用meta标签作为备用重定向方案
-        document.write(`<meta http-equiv="refresh" content="${redirectConfig.delay};url=${redirectConfig.targetUrl}">`);
+        // 更新地址状态
+        function updateAddressStatus(index, status, message = '') {
+            const addressItem = document.getElementById(`address-${index}`);
+            const statusIndicator = addressItem.querySelector('.status-indicator');
+            
+            // 移除所有状态类
+            addressItem.classList.remove('checking', 'checked', 'failed');
+            statusIndicator.classList.remove('status-pending', 'status-success', 'status-failed');
+            
+            // 添加新状态类
+            if (status === 'checking') {
+                addressItem.classList.add('checking');
+                statusIndicator.classList.add('status-pending');
+                statusIndicator.innerHTML = '';
+            } else if (status === 'success') {
+                addressItem.classList.add('checked');
+                statusIndicator.classList.add('status-success');
+                statusIndicator.innerHTML = '✓';
+            } else if (status === 'failed') {
+                addressItem.classList.add('failed');
+                statusIndicator.classList.add('status-failed');
+                statusIndicator.innerHTML = '✗';
+            }
+            
+            // 更新进度条
+            const progress = ((index + 1) / redirectConfig.targetUrls.length) * 100;
+            progressBarElement.style.width = `${progress}%`;
+        }
+        
+        // 更可靠的URL可用性检测方法
+        async function checkUrlAvailability(url, index) {
+            return new Promise((resolve) => {
+                updateAddressStatus(index, 'checking');
+                
+                const timeout = setTimeout(() => {
+                    resolve(false);
+                }, redirectConfig.checkTimeout);
+                
+                // 使用XMLHttpRequest进行检测，更可靠
+                const xhr = new XMLHttpRequest();
+                xhr.timeout = redirectConfig.checkTimeout;
+                
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 400) {
+                        clearTimeout(timeout);
+                        resolve(true);
+                    } else {
+                        clearTimeout(timeout);
+                        resolve(false);
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    clearTimeout(timeout);
+                    resolve(false);
+                };
+                
+                xhr.ontimeout = function() {
+                    resolve(false);
+                };
+                
+                try {
+                    xhr.open('GET', url, true);
+                    xhr.send();
+                } catch (e) {
+                    clearTimeout(timeout);
+                    resolve(false);
+                }
+            });
+        }
+        
+        // 执行重定向
+        function performRedirect(url) {
+            selectedUrlElement.textContent = url;
+            successMessageElement.style.display = 'block';
+            
+            let countdown = redirectConfig.redirectDelay;
+            countdownElement.textContent = countdown;
+            
+            const countdownInterval = setInterval(() => {
+                countdown--;
+                countdownElement.textContent = countdown;
+                
+                if (countdown <= 0) {
+                    clearInterval(countdownInterval);
+                    window.location.href = url;
+                }
+            }, 1000);
+        }
+        
+        // 手动重定向
+        function manuallyRedirectTo(url, name) {
+            alert(`将手动跳转到: ${name}\n${url}`);
+            window.location.href = url;
+        }
+        
+        // 主函数 - 检测所有地址
+        async function checkAllAddresses() {
+            initializeAddressList();
+            initializeManualButtons();
+            
+            for (let i = 0; i < redirectConfig.targetUrls.length; i++) {
+                const target = redirectConfig.targetUrls[i];
+                const isAvailable = await checkUrlAvailability(target.url, i);
+                
+                if (isAvailable) {
+                    updateAddressStatus(i, 'success');
+                    // 找到第一个可用地址，执行重定向
+                    performRedirect(target.url);
+                    return;
+                } else {
+                    updateAddressStatus(i, 'failed');
+                }
+                
+                // 添加短暂延迟以便用户可以看到检测过程
+                await new Promise(resolve => setTimeout(resolve, 500));
+            }
+            
+            // 所有地址都不可用
+            alert('所有地址都不可用，请稍后再试或联系管理员。');
+        }
+        
+        // 页面加载后开始检测
+        window.addEventListener('load', checkAllAddresses);
     </script>
 </body>
 </html>
